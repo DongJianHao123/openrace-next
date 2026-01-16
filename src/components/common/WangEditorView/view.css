@@ -1,0 +1,64 @@
+/* 所有.editor-content-view的直接子元素添加margin */
+.editor-content-view > * {
+    margin: 15px 0;
+}
+
+/* .editor-content-view的直接子元素h1~h6，以及该容器内所有h2~h6（非直接子元素也生效） */
+.editor-content-view h1,
+.editor-content-view h2,
+.editor-content-view h3,
+.editor-content-view h4,
+.editor-content-view h5,
+.editor-content-view h6 {
+    margin: 20px 0;
+}
+
+.editor-content-view p,
+.editor-content-view li {
+    white-space: pre-wrap;
+    /* 保留空格 */
+}
+
+.editor-content-view blockquote {
+    border-left: 8px solid #d0e5f2;
+    padding: 10px 10px;
+    margin: 10px 0;
+    background-color: #f1f1f1;
+}
+
+.editor-content-view code {
+    font-family: monospace;
+    background-color: #eee;
+    padding: 3px;
+    border-radius: 3px;
+}
+
+.editor-content-view pre>code {
+    display: block;
+    padding: 10px;
+}
+
+.editor-content-view table {
+    border-collapse: collapse;
+}
+
+.editor-content-view td,
+.editor-content-view th {
+    border: 1px solid #ccc;
+    min-width: 50px;
+    height: 20px;
+    padding: 5px 0;
+}
+
+.editor-content-view th {
+    background-color: #f1f1f1;
+}
+
+.editor-content-view ul,
+.editor-content-view ol {
+    padding-left: 20px;
+}
+
+.editor-content-view input[type="checkbox"] {
+    margin-right: 5px;
+}
