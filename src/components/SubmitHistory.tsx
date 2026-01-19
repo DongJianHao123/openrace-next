@@ -12,11 +12,11 @@ const SubmitHistory = ({ historys, isAdmin = false }: { historys: IProjectTeamRe
             {
                 historys.length === 0 && <Empty description={"暂无提交记录"} />
             }
-            {historys.sort((a, b) => b.createTime - a.createTime).map((sub) => (
+            {historys.sort((a, b) => (b.createTime || 0) - (a.createTime || 0)).map((sub) => (
                 <div key={sub.id} className="border-l-2 border-slate-200 pl-4 relative text-left py-3">
                     <div className={`w-2 h-2 rounded-full absolute -left-[5px] top-3 bg-green-500`}></div>
                     <div className="flex justify-between items-center">
-                        <p className="text-xs text-slate-400">{Utils.date.format(sub.createTime)}</p>
+                        <p className="text-xs text-slate-400">{Utils.date.format(sub.createTime || 0)}</p>
                     </div>
                     <div className="mt-3 flex flex-col gap-4">
                         <p className="text-xs text-slate-500 flex items-start gap-1">

@@ -95,7 +95,6 @@ const UserProfile: React.FC = () => {
     const [avatar, setAvatar] = useState('');
     const [userEditForm] = Form.useForm();
     const { history } = useWindow();
-    const router = useRouter();
 
     const { user, userTeams: { userCreatedTeams = [], userJoinedTeams = [] } } = useUserStore();
 

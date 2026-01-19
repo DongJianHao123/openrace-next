@@ -5,6 +5,8 @@ import { ConfigProvider } from "antd";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Suspense } from "react";
+import { Loading } from "@/components/Loading";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,7 +38,9 @@ export default function RootLayout({
             <LanguageProvider>
               <ToastProvider>
                 <Layout>
-                  {children}
+                  <Suspense fallback={<Loading text="正在加载..." />}>
+                    {children}
+                  </Suspense>
                 </Layout>
               </ToastProvider>
             </LanguageProvider>

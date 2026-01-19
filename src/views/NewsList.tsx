@@ -1,10 +1,11 @@
 
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { Calendar, Eye, ChevronRight } from 'lucide-react';
-import { api } from '../services/api';
+// import { api } from '../services/api';
 import { News } from '../types';
 import { Loading } from '../components/Loading';
+import Link from 'next/link';
 
 const NewsList: React.FC = () => {
     const [news, setNews] = useState<News[]>([]);
@@ -13,8 +14,8 @@ const NewsList: React.FC = () => {
     useEffect(() => {
         const fetchNews = async () => {
             try {
-                const data = await api.getNews();
-                setNews(data);
+                // const data = await api.getNews();
+                // setNews(data);
             } catch (e) {
                 console.error(e);
             } finally {
@@ -36,7 +37,7 @@ const NewsList: React.FC = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {news.map(item => (
-                        <Link key={item.id} to={`/news/${item.id}`} className="group bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-lg transition-all flex flex-col h-full">
+                        <Link key={item.id} href={`/news/${item.id}`} className="group bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-lg transition-all flex flex-col h-full">
                             <div className="h-48 overflow-hidden relative">
                                 <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                                 <div className="absolute top-3 left-3 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded">

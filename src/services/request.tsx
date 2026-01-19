@@ -173,7 +173,7 @@ class HttpClient {
                 ...(["POST", "PUT", "DELETE"].includes(method.toUpperCase()) && {
                     body: JSON.stringify(requestData || {}),
                 }),
-                cache: "no-store", // 禁用缓存（按需调整）
+                // cache: "no-store", // 禁用缓存（按需调整）
                 credentials: "include", // 携带 cookie
             };
 

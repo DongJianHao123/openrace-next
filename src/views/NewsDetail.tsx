@@ -1,26 +1,27 @@
 
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+// import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, Eye, User, Share2 } from 'lucide-react';
-import { api } from '../services/api';
+// import { api } from '../services/api';
 import { News } from '../types';
 import { Loading } from '../components/Loading';
+import Link from 'next/link';
 
 const NewsDetail: React.FC = () => {
-    const { id } = useParams<{ id: string }>();
+    // const { id } = useParams<{ id: string }>();
     const [newsItem, setNewsItem] = useState<News | null>(null);
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const fetchDetail = async () => {
-            if (id) {
-                const data = await api.getNewsDetail(id);
-                setNewsItem(data || null);
-                setLoading(false);
-            }
-        };
-        fetchDetail();
-    }, [id]);
+    // useEffect(() => {
+    //     const fetchDetail = async () => {
+    //         if (id) {
+    //             const data = await api.getNewsDetail(id);
+    //             setNewsItem(data || null);
+    //             setLoading(false);
+    //         }
+    //     };
+    //     fetchDetail();
+    // }, [id]);
 
     if (loading) return <Loading text="加载文章中..." />;
     if (!newsItem) return <div className="text-center py-20">文章不存在</div>;
@@ -32,7 +33,7 @@ const NewsDetail: React.FC = () => {
                 <div className="h-[300px] sm:h-[400px] w-full relative">
                     <img src={newsItem.image} alt={newsItem.title} className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-8">
-                        <Link to="/news" className="inline-flex items-center text-white/80 hover:text-white mb-4 text-sm font-medium">
+                        <Link href="/news" className="inline-flex items-center text-white/80 hover:text-white mb-4 text-sm font-medium">
                             <ArrowLeft className="w-4 h-4 mr-1" /> 返回资讯列表
                         </Link>
                         <div className="flex items-center gap-2 mb-3">

@@ -3,6 +3,8 @@ import type { NextConfig } from "next";
 const baseUrl = process.env.HTTP_BASEURL;
 
 const nextConfig: NextConfig = {
+  // dist
+  distDir: 'dist',
   /* config options here */
   async rewrites() {
     return [
@@ -34,7 +36,7 @@ const nextConfig: NextConfig = {
   // 核心：开启 Next.js 内置 Gzip 压缩（适配 Web 标准请求）
   compress: true,
   productionBrowserSourceMaps: false,
-  output: "standalone",
+  // output: "standalone",
   reactStrictMode: false,
   experimental: {
     // 允许中间件修改响应体（用于手动 Brotli 压缩）
