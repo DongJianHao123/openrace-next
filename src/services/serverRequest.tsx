@@ -148,13 +148,19 @@ class HttpClient {
                 ...(["POST", "PUT", "DELETE"].includes(method.toUpperCase()) && {
                     body: JSON.stringify(requestData || {}),
                 }),
-                cache: "default", // 禁用缓存（按需调整）
-                next: {
-                    revalidate,
-                },
                 credentials: "include", // 携带 cookie
             };
-
+            if (revalidate || revalidate === 0) {
+                if (revalidate > 0) {
+                    fetchOptions.next = {
+                        revalidate
+                    }
+                } else {
+                    fetchOptions.cache = 'no-store'
+                }
+            } else {
+                fetchOptions.cache = 'force-cache'
+            }
             // 发送请求
             const response = await fetch(fullUrl, fetchOptions);
             // 处理响应

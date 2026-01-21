@@ -49,8 +49,7 @@ const nextConfig: NextConfig = {
     //   exclude: ["bigint", "symbol"], // 排除无需序列化的类型
     // },
     
-  },
-  generateBuildId: () => "1", // 固定 buildId，避免序列化随机值
+  }
 };
 
 export default nextConfig;
