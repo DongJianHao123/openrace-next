@@ -38,6 +38,7 @@ export const ORGANIZATIONS_WHITELIST: (keyof IOrganization)[] = [
   'icon',
   'description',
   'projectCount',
+  'loginName',
 ];
 
 // 页面级白名单映射（方便复用）

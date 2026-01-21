@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   title: "OpenRace - 竞逐科技前沿，凝聚创新合力",
   description: "竞逐科技前沿，凝聚创新合力",
   icons: {
-    icon: "/favicon.ico",
+    icon: "https://oss.opencamp.cn/file/20260121/20260121_380106.ico",
     shortcut: "/logo.png",
     apple: "/logo.png",
   },
@@ -36,7 +36,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       {/* 增加icon */}
-      <link rel="icon" href="/favicon.ico" />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

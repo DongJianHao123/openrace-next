@@ -11,6 +11,8 @@ interface IRequestOptions {
     data?: SafeAny;
     params?: SafeAny;
     headers?: HeadersInit;
+    /** 缓存时间（秒） */
+    revalidate?: number | false;
 }
 
 export interface IResponse<T = SafeAny> extends SafeAny {
@@ -118,6 +120,8 @@ class HttpClient {
         data,
         params,
         headers,
+        /** 缓存时间（秒） */
+        revalidate,
     }: IRequestOptions): Promise<IResponse<T>> {
         try {
             // 拼接完整 URL
@@ -144,7 +148,10 @@ class HttpClient {
                 ...(["POST", "PUT", "DELETE"].includes(method.toUpperCase()) && {
                     body: JSON.stringify(requestData || {}),
                 }),
-                cache: "no-store", // 禁用缓存（按需调整）
+                cache: "default", // 禁用缓存（按需调整）
+                next: {
+                    revalidate,
+                },
                 credentials: "include", // 携带 cookie
             };
 
@@ -163,9 +170,11 @@ class HttpClient {
     public post<T = SafeAny>(
         url: string,
         data?: SafeAny,
-        headers?: HeadersInit
+        /** 缓存时间（秒） */
+        revalidate?: number | false,
+        headers?: HeadersInit,
     ): Promise<IResponse<T>> {
-        return this.request<T>({ url, method: "POST", data, headers });
+        return this.request<T>({ url, method: "POST", data, headers, revalidate });
     }
 
     /**

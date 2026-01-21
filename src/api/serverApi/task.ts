@@ -5,5 +5,6 @@ export const apiGetServerChallengeByOrgLoginName = (loginName: string, weight: n
   return serverRequest.post<Challenge>(
     "/raceProject/getByLoginNameAndWeight",
     { loginName, weight },
+    2
   );
 }

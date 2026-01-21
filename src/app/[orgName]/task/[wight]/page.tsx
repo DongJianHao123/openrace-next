@@ -1,6 +1,19 @@
 import { apiGetServerChallengeByOrgLoginName } from "@/api/serverApi/task";
 import { apiGetProjectTeams } from "@/api/webApi/projectTeam";
 import ChallengeDetail from "@/views/ChallengeDetail";
+import { ResolvingMetadata } from "next";
+
+export const generateMetadata = async ({ params }: { params: { orgName: string, wight: string } }) => {
+    const { orgName, wight } = await params;
+    const { data } = await apiGetServerChallengeByOrgLoginName(orgName, Number(wight));
+    if (!data) {
+        return {};
+    }
+    return {
+        title: `${data?.name} - openrace - ${orgName}`,
+        description: data?.description,
+    }
+}
 
 const getData = async (orgName: string, wight: string) => {
     const { data } = await apiGetServerChallengeByOrgLoginName(orgName, Number(wight));

@@ -12,7 +12,7 @@ export const apiGetCollectionByCode = (organizationName: string, code: string) =
 }
 
 export const apiGetCollectionByOrgNameAndCode = (orgName: string, code: string) => {
-    return webRequest.post<ICollection>('/raceCollection/getByOrgNameAndCode', { orgName, code })
+    return webRequest.post<ICollection>('/raceCollection/getByOrgNameAndCode', { orgName, code }, 2)
 }
 
 export const apiGetServerCollectionByOrgNameAndCode = (orgName: string, code: string) => {
