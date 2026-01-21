@@ -16,10 +16,10 @@ interface IProps {
 }
 
 const why_features = {
-  1: { title: '权威榜题来源', desc: '聚焦国家重大战略需求，榜题均经院士专家论证，覆盖12大关键技术领域，确保技术方向的前瞻性与必要性。' },
-  2: { title: '全流程透明监督', desc: '从揭榜到结题，实时公示进度、中期评估结果及评审过程，杜绝暗箱操作，确保攻关质量与公平公正。' },
-  3: { title: '政企资源支持', desc: '联合70+科研院所、300+龙头企业，提供实验平台、数据集、技术指导等资源，降低攻关门槛。' },
-  4: { title: '成果优先转化', desc: '“擂主”成果优先对接央企/地方政府项目，提供专利布局、市场化推广服务，加速技术落地。' },
+  1: { title: '真实榜题来源', desc: '每一道榜题都源自真实的技术前瞻与行业痛点。汇聚社区集体智慧，让每一个具有价值的技术需求都能被看见、被响应。' },
+  2: { title: '全流程透明监督', desc: '从揭榜到结题，实时公示进度、中期评估结果及评审过程，确保攻关质量与公平公正。' },
+  3: { title: '资源支持', desc: '联合多个技术社区，提供实验平台、数据集、技术指导等资源，降低攻关门槛。' },
+  4: { title: '灵活的资金支持体系', desc: '将激励与研发进度深度绑定，确保攻关资金透明、准时、高效到账，保障科研投入的价值回报。' },
 }
 
 const guide_steps_issuer = [
@@ -54,18 +54,18 @@ const HomePage: React.FC<IProps> = (props: IProps) => {
           <h1 className="text-3xl lg:text-5xl font-extrabold tracking-tight mb-8 leading-tight">
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-blue-100 to-white mb-6">
               {/*  汇聚全球创新力量 */}
-              揭榜破题
+              英雄不论出处
             </span>
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-200 to-blue-100 mt-2">
               {/* 攻克国家关键核心技术 */}
-              让每一份创新力精准抵达
+              谁有本事谁揭榜
             </span>
           </h1>
           <div className="max-w-5xl  mx-auto">
             <p className="text-1xl lg:text-lg text-slate-300 mb-10 lg:whitespace-nowrap overflow-hidden text-ellipsis opacity-90">
               {/* 英雄不论出处，谁有本事谁揭榜——聚焦“卡脖子”技术，打通从“科研”到“产业”的最后一公里，加速科技自立自强 */}
-              一个聚焦关键核心技术攻关、打破信息壁垒的开放式创新协作空间。
-              让创新成果在竞赛中涌现，让优秀人才在实战中脱颖而出
+              为开源社区汇聚全球创新力量，以开放协作加速科技自立自强
+              {/* 让创新成果在赛马中涌现，让优秀人才在实战中脱颖而出 */}
             </p>
           </div>
         </div>
@@ -96,7 +96,7 @@ const HomePage: React.FC<IProps> = (props: IProps) => {
         <div className="flex justify-between items-end mb-8 border-b border-slate-200 pb-4">
           <div>
             <h2 className="text-3xl font-bold text-slate-900 mb-2">热门榜题</h2>
-            <p className="text-slate-500">发现国家最迫切的技术需求。</p>
+            <p className="text-slate-500">发现社区最迫切的技术需求。</p>
           </div>
           <Link href="/tasks" className="flex items-center text-blue-600 hover:text-blue-800 font-medium mb-1">
             查看全部 <ChevronRight className="w-4 h-4 ml-1" />
@@ -117,7 +117,7 @@ const HomePage: React.FC<IProps> = (props: IProps) => {
               Industry Leaders
             </div> */}
             <h2 className="text-3xl font-black text-slate-900">合作单位</h2>
-            <p className="text-slate-500 mt-2">汇聚国内顶尖科研院所、央国企及头部科技企业</p>
+            <p className="text-slate-500 mt-2"></p>
           </div>
           {/* <Link to="/challenges" className="group inline-flex items-center text-sm font-bold text-blue-600 bg-blue-50 px-4 py-2 rounded-full hover:bg-blue-600 hover:text-white transition-all">
             查看全部入驻单位 <ChevronRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
