@@ -25,6 +25,17 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+       # ========== 新增步骤：生成 .env.production 文件 ==========
+      - name: Generate .env.production
+        run: |
+          # 创建 .env.production 文件（覆盖原有或新建）
+          cat > .env.production << EOF
+          # 基础环境
+          HTTP_BASEURL=${{ secrets.HTTP_BASEURL }}
+          EOF
+          # 验证文件是否生成（可选，便于调试）
+          cat .env.production
+
       - name: Build project
         run: pnpm build
 
