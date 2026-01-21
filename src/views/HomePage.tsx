@@ -52,16 +52,20 @@ const HomePage: React.FC<IProps> = (props: IProps) => {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
           <h1 className="text-3xl lg:text-5xl font-extrabold tracking-tight mb-8 leading-tight">
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-blue-100 to-white">
-              汇聚全球创新力量
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-blue-100 to-white mb-6">
+              {/*  汇聚全球创新力量 */}
+              揭榜破题
             </span>
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-200 to-blue-100 mt-2">
-              攻克国家关键核心技术
+              {/* 攻克国家关键核心技术 */}
+              让每一份创新力精准抵达
             </span>
           </h1>
           <div className="max-w-5xl  mx-auto">
             <p className="text-1xl lg:text-lg text-slate-300 mb-10 lg:whitespace-nowrap overflow-hidden text-ellipsis opacity-90">
-              英雄不论出处，谁有本事谁揭榜——聚焦“卡脖子”技术，打通从“科研”到“产业”的最后一公里，加速科技自立自强
+              {/* 英雄不论出处，谁有本事谁揭榜——聚焦“卡脖子”技术，打通从“科研”到“产业”的最后一公里，加速科技自立自强 */}
+              一个聚焦关键核心技术攻关、打破信息壁垒的开放式创新协作空间。
+              让创新成果在竞赛中涌现，让优秀人才在实战中脱颖而出
             </p>
           </div>
         </div>

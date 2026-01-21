@@ -3,12 +3,11 @@ import { useLanguage } from '@/store/contexts/LanguageContext';
 import { useMessageStore } from '@/store/messages.store';
 import { useWebOrganizationsStore } from '@/store/organizations.store';
 import { useUserStore } from '@/store/user.store';
-import useWindow from '@/utils/hooks/useWIndow';
 import { Badge, Modal } from 'antd';
 import jsCookie from 'js-cookie';
 import { Bell, Hexagon, LogIn, Menu, MessageSquare, X } from 'lucide-react';
 import Link from 'next/link';
-import { redirect, usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
 
 interface LayoutProps {
@@ -87,7 +86,7 @@ const Navbar: React.FC = () => {
                 <div className="flex justify-between h-16">
                     <div className="flex items-center">
                         <Link href="/" className="flex-shrink-0 flex items-center gap-2">
-                            <Hexagon className="h-8 w-8 text-blue-700 fill-current" />
+                            <img src="/logo.png" className="h-8 w-8 text-blue-700 fill-current" />
                             <span className="font-bold text-xl tracking-tight text-slate-900">{t.nav.brand}</span>
                         </Link>
                         <div className="hidden sm:ml-10 sm:flex sm:space-x-8">

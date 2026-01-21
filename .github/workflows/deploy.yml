@@ -1,0 +1,74 @@
+name: Deploy OpenRace
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22.10.0'
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build project
+        run: pnpm build
+
+      # ========== 新增步骤：安装 rar 工具并压缩 dist 目录 ==========
+      - name: Install rar tool and compress dist
+        run: |
+          # 安装 rar 压缩工具（Ubuntu 环境）
+          sudo apt update && sudo apt install -y rar
+          # 进入项目根目录，将 dist 目录压缩为 dist.rar（保留目录结构）
+          rar a -r dist.rar dist/
+          # 验证压缩包是否生成（可选，便于调试）
+          ls -lh dist.rar
+
+      - name: Deploy to Server
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          password: ${{ secrets.REMOTE_PASSWORD }}
+          port: ${{ secrets.REMOTE_PORT }}
+          # ========== 修改：传输压缩包而非原 dist 文件 ==========
+          source: "dist.rar"
+          target: "/root/Github/openrace-next"  # 直接传到目标目录，后续脚本解压
+          # 移除 strip_components（压缩包无需剥离层级）
+
+      - name: Execute Deployment Script
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          password: ${{ secrets.REMOTE_PASSWORD }} 
+          port: ${{ secrets.REMOTE_PORT }}
+          script: |
+            if [ -f /var/www/deploy_openrace.sh ]; then
+              chmod +x /var/www/deploy_openrace.sh
+              /var/www/deploy_openrace.sh
+            else
+              # ========== 补充：若无部署脚本，手动解压压缩包（可选） ==========
+              echo "Deployment script not found! Unzip dist.rar manually..."
+              # 先删除旧 dist 目录（避免冲突）
+              rm -rf /var/www/dist
+              # 解压压缩包到 /var/www/ 目录
+              unrar x /var/www/dist.rar /var/www/
+              # 解压后删除压缩包（清理空间）
+              rm -f /var/www/dist.rar
+              exit 1
+            fi

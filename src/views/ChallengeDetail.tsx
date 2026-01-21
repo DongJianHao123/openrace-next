@@ -134,6 +134,20 @@ const ChallengeDetail: React.FC<IProps> = (props) => {
   };
 
   const openJoinModal = (team: IProjectTeam) => {
+    console.log('isLogin', isLogin);
+
+    if (!isLogin) {
+      Modal.confirm({
+        title: '提示',
+        content: '您需要先登录才能加入榜题，是否前往登录页？',
+        okText: '去登录',
+        onOk: () => {
+          router.push('/login?from=' + encodeURIComponent(window.location.pathname));
+        },
+        cancelText: '取消',
+      });
+      return;
+    }
     setSelectedTeamForJoin(team);
     setShowJoinModal(true);
   };
@@ -352,7 +366,7 @@ const ChallengeDetail: React.FC<IProps> = (props) => {
               {solvers.length > 0 ? (
                 <div className="space-y-4">
                   {solvers.map(solver => (
-                    <div key={solver.id} className="border border-slate-200 rounded-lg p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div key={solver.id} className="border border-slate-200 rounded-lg p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 relative">
                       <div className="flex-grow">
                         <div className="flex flex-col sm:flex-row items-start sm:items-center w-full gap-2 sm:gap-0">
                           {/* 队伍头像+名称 核心区（移动端优先展示） */}
@@ -383,12 +397,12 @@ const ChallengeDetail: React.FC<IProps> = (props) => {
                                   <span className="text-sm font-medium text-slate-500">无</span>
                                 )}
                               </div>
-
                             </div>
-                            {/* 状态标签：移动端跟在信息后，PC端保持原间距 */}
-                            <span className="ml-0 sm:ml-3 text-xs text-blue-600 font-medium bg-blue-50 px-2 py-0.5 rounded-full">
-                              {solver.statusText}
-                            </span>
+                          </div>
+                          <div className='flex items-center justify-end flex-1 absolute right-0 top-0'>
+                            <Tag color={TEAM_STATUS_OPTIONS.find(item => item.value === solver.status)?.color || 'gray'} className="ml-0 sm:ml-3 text-xs text-blue-600 font-medium bg-blue-50 px-2 py-0.5 rounded-none rounded-bl-lg rounded-tr-lg flex-shrink-0">
+                              {TEAM_STATUS_OPTIONS.find(item => item.value === solver.status)?.label || '未知'}
+                            </Tag>
                           </div>
 
                           {/* 操作按钮区：移动端单独一行右对齐，PC端flex-1右对齐 */}
