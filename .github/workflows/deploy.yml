@@ -69,17 +69,4 @@ jobs:
           password: ${{ secrets.REMOTE_PASSWORD }} 
           port: ${{ secrets.REMOTE_PORT }}
           script: |
-            if [ -f /var/www/deploy_openrace.sh ]; then
-              chmod +x /var/www/deploy_openrace.sh
-              /var/www/deploy_openrace.sh
-            else
-              # ========== 补充：若无部署脚本，手动解压压缩包（可选） ==========
-              echo "Deployment script not found! Unzip dist.rar manually..."
-              # 先删除旧 dist 目录（避免冲突）
-              rm -rf /var/www/dist
-              # 解压压缩包到 /var/www/ 目录
-              unrar x /var/www/dist.rar /var/www/
-              # 解压后删除压缩包（清理空间）
-              rm -f /var/www/dist.rar
-              exit 1
-            fi
+            sh /root/Github/openrace-next/deploy.sh
