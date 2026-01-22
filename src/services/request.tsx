@@ -124,7 +124,7 @@ class HttpClient {
         return {
             code: response.status,
             message: data.msg || "请求成功",
-            data: data.data || data,
+            data: data.data
         };
     }
 

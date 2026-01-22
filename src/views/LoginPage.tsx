@@ -66,11 +66,15 @@ const LoginPage: React.FC = () => {
                 password: formData.password,
                 type: loginMethod
             });
-            const user = loginRes?.data || {};
-            loginSuccess(user, user.token || '');
-            // In a real app, verify user token here or save to context
-            showToast('登录成功', 'success');
-            router.push(from);
+            if (loginRes?.data && loginRes.code === 200) {
+                const user = loginRes?.data || {};
+                loginSuccess(user, user.token || '');
+                // In a real app, verify user token here or save to context
+                showToast('登录成功', 'success');
+                router.push(from);
+            } else {
+                showToast('登录失败', 'error');
+            }
         } catch (error: any) {
             showToast(error.message || '登录失败', 'error');
         } finally {

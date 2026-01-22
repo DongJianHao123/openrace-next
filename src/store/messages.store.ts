@@ -55,7 +55,7 @@ export const useMessageStore = create<MessageState>()(
         unReadCount: 0,
         loadUnReadCount: async () => {
             const res = await apiGetUnReadCount();
-            if (res?.data) {
+            if (res?.data){
                 set({ unReadCount: res.data || 0 });
             }
         }

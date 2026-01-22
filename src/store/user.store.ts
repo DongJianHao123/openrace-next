@@ -3,10 +3,10 @@ import { apiGetUserJoinTeams } from '@/api/webApi/projectTeam';
 import { apiGetUserInfo } from '@/api/webApi/user';
 import { IProjectTeam } from '@/types/projectTeam';
 import { IUser } from '@/types/user';
+import jsCookie from 'js-cookie';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import jsCookie from 'js-cookie';
-import { redirect } from 'next/navigation';
+import { useMessageStore } from './messages.store';
 
 // 1. 定义状态类型
 interface UserState {
@@ -68,6 +68,7 @@ export const useUserStore = create<UserState>()(
                     if (res?.data) {
                         set({ user: res.data, isLogin: true });
                         useUserStore.getState().loadUserTeams();
+                        useMessageStore.getState().loadMessages();
                     }
                 } catch (error) {
                     console.error("Failed to fetch user info:", error);
